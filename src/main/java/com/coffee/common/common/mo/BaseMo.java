@@ -2,6 +2,9 @@ package com.coffee.common.common.mo;
 
 import java.io.Serializable;
 
+/**
+ * @author QM
+ */
 public class BaseMo implements Serializable {
 
 	private static final long serialVersionUID = 2273570974858354649L;

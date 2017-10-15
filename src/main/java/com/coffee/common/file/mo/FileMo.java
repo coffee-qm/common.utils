@@ -2,6 +2,9 @@ package com.coffee.common.file.mo;
 
 import com.coffee.common.common.mo.BaseMo;
 
+/**
+ * @author QM
+ */
 public class FileMo extends BaseMo {
 
 	private static final long serialVersionUID = 4846239980581260089L;

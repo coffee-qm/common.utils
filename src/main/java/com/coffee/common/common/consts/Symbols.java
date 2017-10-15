@@ -1,5 +1,8 @@
 package com.coffee.common.common.consts;
 
+/**
+ * @author QM
+ */
 public interface Symbols {
 	String COMMA = ",";
 	String POINT = ".";

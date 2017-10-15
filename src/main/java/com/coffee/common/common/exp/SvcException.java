@@ -1,5 +1,8 @@
 package com.coffee.common.common.exp;
 
+/**
+ * @author QM
+ */
 public class SvcException extends Exception {
 
 	/**

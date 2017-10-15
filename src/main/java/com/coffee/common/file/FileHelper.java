@@ -3,6 +3,9 @@ package com.coffee.common.file;
 import com.coffee.common.common.exp.SvcException;
 import com.coffee.common.file.utils.ReaderUtils;
 
+/**
+ * @author QM
+ */
 public final class FileHelper {
 
 	/**

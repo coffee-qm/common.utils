@@ -12,8 +12,11 @@ import java.io.Reader;
 
 import com.coffee.common.common.consts.SymbolsChar;
 import com.coffee.common.common.exp.SvcException;
-import com.coffee.common.io.IOHelper;
+import com.coffee.common.io.IoHelper;
 
+/**
+ * @author QM
+ */
 public final class ReaderUtils {
 
 	/**
@@ -40,7 +43,7 @@ public final class ReaderUtils {
 		} catch (IOException e) {
 			throw new SvcException("Failed to read file.");
 		} finally {
-			IOHelper.close(reader);
+			IoHelper.close(reader);
 		}
 		return sb.toString();
 	}
@@ -81,7 +84,7 @@ public final class ReaderUtils {
 		} catch (IOException e) {
 			throw new SvcException("Failed to read file.");
 		} finally {
-			IOHelper.close(reader);
+			IoHelper.close(reader);
 		}
 		return sb.toString();
 	}
@@ -108,7 +111,7 @@ public final class ReaderUtils {
 		} catch (IOException e) {
 			throw new SvcException("Failed to read file.");
 		} finally {
-			IOHelper.close(in);
+			IoHelper.close(in);
 		}
 		return sb.toString();
 	}
