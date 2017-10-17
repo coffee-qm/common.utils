@@ -10,6 +10,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.coffee.common.common.consts.SymbolsChar;
 import com.coffee.common.common.exp.SvcException;
 import com.coffee.common.io.IoHelper;
@@ -18,6 +21,8 @@ import com.coffee.common.io.IoHelper;
  * @author QM
  */
 public final class ReaderUtils {
+	
+	private static Logger logger = LoggerFactory.getLogger(ReaderUtils.class);
 
 	/**
 	 * 以行为单位读取文件，常用于读面向行的格式化文件
@@ -39,8 +44,10 @@ public final class ReaderUtils {
 			}
 			reader.close();
 		} catch (FileNotFoundException e) {
+			logger.error("", e);
 			throw new SvcException("Failed to find file.");
 		} catch (IOException e) {
+			logger.error("", e);
 			throw new SvcException("Failed to read file.");
 		} finally {
 			IoHelper.close(reader);
@@ -80,8 +87,10 @@ public final class ReaderUtils {
 			}
 
 		} catch (FileNotFoundException e) {
+			logger.error("", e);
 			throw new SvcException("Failed to find file.");
 		} catch (IOException e) {
+			logger.error("", e);
 			throw new SvcException("Failed to read file.");
 		} finally {
 			IoHelper.close(reader);
@@ -107,8 +116,10 @@ public final class ReaderUtils {
 				sb.append(tempBytes);
 			}
 		} catch (FileNotFoundException e) {
+			logger.error("", e);
 			throw new SvcException("Failed to find file.");
 		} catch (IOException e) {
+			logger.error("", e);
 			throw new SvcException("Failed to read file.");
 		} finally {
 			IoHelper.close(in);
