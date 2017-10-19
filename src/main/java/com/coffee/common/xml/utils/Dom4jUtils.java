@@ -22,9 +22,9 @@ public final class Dom4jUtils {
 
 	private static Logger logger = LoggerFactory.getLogger(Dom4jUtils.class);
 
-	public Document getDocument(InputStream in) throws SvcException {
+	public Document getDocument(final InputStream in) throws SvcException {
 		try {
-			SAXReader reader = new SAXReader();
+			final SAXReader reader = new SAXReader();
 			//
 			reader.setEntityResolver(new EntityResolver() {
 				String emptyDtd = "";
@@ -32,8 +32,8 @@ public final class Dom4jUtils {
 						emptyDtd.getBytes());
 
 				@Override
-				public InputSource resolveEntity(String publicId,
-						String systemId) throws SAXException, IOException {
+				public InputSource resolveEntity(final String publicId,
+						final String systemId) throws SAXException, IOException {
 					return new InputSource(byteArrIs);
 				}
 			});
@@ -42,10 +42,10 @@ public final class Dom4jUtils {
 					"http://apache.org/xml/features/disallow-doctype-decl",
 					Boolean.TRUE);
 			return reader.read(in);
-		} catch (DocumentException e) {
+		} catch (final DocumentException e) {
 			logger.error("", e);
 			throw new SvcException("Failed to read xml.");
-		} catch (SAXException e) {
+		} catch (final SAXException e) {
 			logger.error("", e);
 			throw new SvcException("Failed to read xml.");
 		}

@@ -12,6 +12,10 @@ import org.apache.tools.zip.ZipFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.coffee.common.common.consts.CharacterSet;
+import com.coffee.common.common.consts.Symbols;
+import com.coffee.common.io.utils.IoUtils;
+
 /**
  * @author QM
  */
@@ -27,79 +31,69 @@ public class ZipUtils {
 	 * @param path
 	 *            path
 	 */
-	public static void unZip(String path) {
-		int count = -1;
+	public static void unZip(final String path) {
 		String savepath = "";
 
-		File file = null;
+		ZipFile zipFile = null;
 		InputStream is = null;
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;
 
-		savepath = path.substring(0, path.lastIndexOf(".")) + File.separator; // 保存解压文件目录
-		new File(savepath).mkdir(); // 创建保存目录
-		ZipFile zipFile = null;
+		// 保存解压文件目录
+		savepath = path.substring(0, path.lastIndexOf(Symbols.POINT)) + File.separator;
+		// 创建保存目录
+		new File(savepath).mkdir();
 		try {
-			zipFile = new ZipFile(path, "gbk"); // 解决中文乱码问题
-			Enumeration<?> entries = zipFile.getEntries();
+			File file = null;
+			// 解决中文乱码问题
+			zipFile = new ZipFile(path, CharacterSet.GBK);
+			final Enumeration<?> entries = zipFile.getEntries();
 
 			while (entries.hasMoreElements()) {
-				byte buf[] = new byte[BUFFER_SIZE];
+				final byte buf[] = new byte[BUFFER_SIZE];
 
-				ZipEntry entry = (ZipEntry) entries.nextElement();
+				final ZipEntry entry = (ZipEntry) entries.nextElement();
 
 				String filename = entry.getName();
 				boolean ismkdir = false;
-				if (filename.lastIndexOf("/") != -1) { // 检查此文件是否带有文件夹
+				// 检查此文件是否带有文件夹
+				if (filename.lastIndexOf(Symbols.SLASH_L) != -1) {
 					ismkdir = true;
 				}
 				filename = savepath + filename;
-
-				if (entry.isDirectory()) { // 如果是文件夹先创建
+				// 如果是文件夹先创建
+				if (entry.isDirectory()) {
 					file = new File(filename);
 					file.mkdirs();
 					continue;
 				}
 				file = new File(filename);
-				if (!file.exists()) { // 如果是目录先创建
+				// 如果是目录先创建
+				if (!file.exists()) {
 					if (ismkdir) {
 						new File(filename.substring(0,
-								filename.lastIndexOf("/"))).mkdirs(); // 目录先创建
+								filename.lastIndexOf(Symbols.SLASH_L))).mkdirs();
 					}
 				}
-				file.createNewFile(); // 创建文件
+				// 创建文件
+				file.createNewFile();
 
 				is = zipFile.getInputStream(entry);
 				fos = new FileOutputStream(file);
 				bos = new BufferedOutputStream(fos, BUFFER_SIZE);
+				int count = -1;
 				while ((count = is.read(buf)) > -1) {
 					bos.write(buf, 0, count);
 				}
 				bos.flush();
-				bos.close();
-				fos.close();
-				is.close();
 			}
-			zipFile.close();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("", e);
 		} finally {
-			try {
-				if (bos != null) {
-					bos.close();
-				}
-				if (fos != null) {
-					fos.close();
-				}
-				if (is != null) {
-					is.close();
-				}
-				if (zipFile != null) {
-					zipFile.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			IoUtils.closeQuietly(bos);
+			IoUtils.closeQuietly(fos);
+			IoUtils.closeQuietly(is);
+			IoUtils.closeQuietly(zipFile);
 		}
 	}
 }

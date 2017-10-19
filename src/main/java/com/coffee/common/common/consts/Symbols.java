@@ -15,4 +15,6 @@ public interface Symbols {
 	String BRACKETS_R = "]";
 	String BRACES_L = "{";
 	String BRACES_R = "}";
+	String SLASH_L="/";
+	String SLASH_R="\\";
 }
