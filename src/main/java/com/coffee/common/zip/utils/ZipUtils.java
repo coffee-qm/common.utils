@@ -26,7 +26,9 @@ import com.coffee.common.io.utils.IoUtils;
 public class ZipUtils {
 
 	private static Logger logger = LoggerFactory.getLogger(ZipUtils.class);
+
 	private static final String SUFFIX = ".zip";
+
 	private static final int BUFFER_SIZE = 2048;
 
 	/**
