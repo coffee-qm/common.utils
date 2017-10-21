@@ -21,7 +21,7 @@ import com.coffee.common.io.IoHelper;
  * @author QM
  */
 public final class ReaderUtils {
-	
+
 	private static Logger logger = LoggerFactory.getLogger(ReaderUtils.class);
 
 	/**
@@ -32,9 +32,9 @@ public final class ReaderUtils {
 	 * @return content
 	 * @throws SvcException
 	 */
-	public static String readByLines(String filePath) throws SvcException {
-		StringBuilder sb = new StringBuilder();
-		File file = new File(filePath);
+	public static String readByLines(final String filePath) throws SvcException {
+		final StringBuilder sb = new StringBuilder();
+		final File file = new File(filePath);
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader(file));
@@ -43,10 +43,10 @@ public final class ReaderUtils {
 				sb.append(tempString);
 			}
 			reader.close();
-		} catch (FileNotFoundException e) {
+		} catch (final FileNotFoundException e) {
 			logger.error("", e);
 			throw new SvcException("Failed to find file.");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("", e);
 			throw new SvcException("Failed to read file.");
 		} finally {
@@ -63,11 +63,11 @@ public final class ReaderUtils {
 	 * @return content
 	 * @throws SvcException
 	 */
-	public static String readByChars(String filePath) throws SvcException {
-		StringBuilder sb = new StringBuilder();
+	public static String readByChars(final String filePath) throws SvcException {
+		final StringBuilder sb = new StringBuilder();
 		Reader reader = null;
 		try {
-			char[] tempchars = new char[30];
+			final char[] tempchars = new char[30];
 			int charread = 0;
 			reader = new InputStreamReader(new FileInputStream(filePath));
 			while ((charread = reader.read(tempchars)) != -1) {
@@ -86,10 +86,10 @@ public final class ReaderUtils {
 				}
 			}
 
-		} catch (FileNotFoundException e) {
+		} catch (final FileNotFoundException e) {
 			logger.error("", e);
 			throw new SvcException("Failed to find file.");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("", e);
 			throw new SvcException("Failed to read file.");
 		} finally {
@@ -106,19 +106,19 @@ public final class ReaderUtils {
 	 * @return content
 	 * @throws SvcException
 	 */
-	public static String readByBytes(String filePath) throws SvcException {
-		StringBuilder sb = new StringBuilder();
+	public static String readByBytes(final String filePath) throws SvcException {
+		final StringBuilder sb = new StringBuilder();
 		InputStream in = null;
 		try {
-			byte[] tempBytes = new byte[100];
+			final byte[] tempBytes = new byte[100];
 			in = new FileInputStream(filePath);
 			while (in.read(tempBytes) != -1) {
 				sb.append(tempBytes);
 			}
-		} catch (FileNotFoundException e) {
+		} catch (final FileNotFoundException e) {
 			logger.error("", e);
 			throw new SvcException("Failed to find file.");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("", e);
 			throw new SvcException("Failed to read file.");
 		} finally {

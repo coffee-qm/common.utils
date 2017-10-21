@@ -6,15 +6,15 @@ package com.coffee.common.common.exp;
 public class SvcException extends Exception {
 
 	/**
-	 * 
+	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 7872630482307713528L;
-	
-	private long id;
-	
-	private String msg;
 
-	public SvcException(String msg) {
+	private long id;
+
+	private final String msg;
+
+	public SvcException(final String msg) {
 		this.msg = msg;
 	}
 

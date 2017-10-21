@@ -16,7 +16,7 @@ public final class FileHelper {
 	 * @return content
 	 * @throws SvcException
 	 */
-	public static String readByLines(String filePath) throws SvcException {
+	public static String readByLines(final String filePath) throws SvcException {
 		return ReaderUtils.readByLines(filePath);
 	}
 
@@ -28,7 +28,7 @@ public final class FileHelper {
 	 * @return content
 	 * @throws SvcException
 	 */
-	public static String readByChars(String filePath) throws SvcException {
+	public static String readByChars(final String filePath) throws SvcException {
 		return ReaderUtils.readByChars(filePath);
 	}
 
@@ -40,8 +40,7 @@ public final class FileHelper {
 	 * @return content
 	 * @throws SvcException
 	 */
-	public static String readByBytes(String filePath) throws SvcException {
+	public static String readByBytes(final String filePath) throws SvcException {
 		return ReaderUtils.readByBytes(filePath);
 	}
-
 }

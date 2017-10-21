@@ -15,7 +15,7 @@ public class BaseMo implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder();
 		sb.append("\"id\":\"").append(id).append("\"");
 		sb.append(",\"name\":\"").append(name).append("\"");
 		return sb.toString();
@@ -25,7 +25,7 @@ public class BaseMo implements Serializable {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(final long id) {
 		this.id = id;
 	}
 
@@ -33,7 +33,7 @@ public class BaseMo implements Serializable {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 }

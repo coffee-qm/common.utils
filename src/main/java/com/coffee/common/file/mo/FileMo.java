@@ -8,16 +8,16 @@ import com.coffee.common.common.mo.BaseMo;
 public class FileMo extends BaseMo {
 
 	private static final long serialVersionUID = 4846239980581260089L;
-	
+
 	private String dir;
-	
+
 	private String type;
 
 	public String getDir() {
 		return dir;
 	}
 
-	public void setDir(String dir) {
+	public void setDir(final String dir) {
 		this.dir = dir;
 	}
 
@@ -25,7 +25,7 @@ public class FileMo extends BaseMo {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(final String type) {
 		this.type = type;
 	}
 }
