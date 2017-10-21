@@ -18,11 +18,12 @@ import com.coffee.common.common.exp.SvcException;
  * @author QM
  */
 public final class JaxUtils {
-	
+
 	private static Logger logger = LoggerFactory.getLogger(JaxUtils.class);
 
 	@SuppressWarnings("unchecked")
-	public <T> T read(InputStream in, Class<T> clazz) throws SvcException {
+	public <T> T read(final InputStream in, final Class<T> clazz)
+			throws SvcException {
 		try {
 			final JAXBContext context = JAXBContext.newInstance(clazz);
 			final XMLInputFactory factory = XMLInputFactory.newFactory();
@@ -30,10 +31,10 @@ public final class JaxUtils {
 			final XMLStreamReader reader = factory.createXMLStreamReader(in);
 			final Unmarshaller unmarshaller = context.createUnmarshaller();
 			return (T) unmarshaller.unmarshal(reader);
-		} catch (JAXBException e) {
+		} catch (final JAXBException e) {
 			logger.error("", e);
 			throw new SvcException("Failed to read xml.");
-		} catch (XMLStreamException e) {
+		} catch (final XMLStreamException e) {
 			logger.error("", e);
 			throw new SvcException("Failed to read xml.");
 		}

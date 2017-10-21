@@ -37,7 +37,7 @@ public final class Dom4jUtils {
 					return new InputSource(byteArrIs);
 				}
 			});
-			// 
+			//
 			reader.setFeature(
 					"http://apache.org/xml/features/disallow-doctype-decl",
 					Boolean.TRUE);

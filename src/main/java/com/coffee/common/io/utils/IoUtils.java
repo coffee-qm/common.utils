@@ -14,11 +14,11 @@ public class IoUtils extends IOUtils {
 
 	private static Logger logger = LoggerFactory.getLogger(IoUtils.class);
 
-	public static void closeQuietly(ZipFile zipFile) {
+	public static void closeQuietly(final ZipFile zipFile) {
 		if (zipFile != null) {
 			try {
 				zipFile.close();
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				logger.error("", e);
 			}
 		}

@@ -14,7 +14,7 @@ public final class IoHelper {
 		IOUtils.closeQuietly(in);
 	}
 
-	public static void close(Reader reader) {
+	public static void close(final Reader reader) {
 		IOUtils.closeQuietly(reader);
 	}
 }
