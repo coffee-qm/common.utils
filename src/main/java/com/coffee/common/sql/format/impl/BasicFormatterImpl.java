@@ -184,7 +184,7 @@ public class BasicFormatterImpl implements Formatter {
 		private void on() {
 			this.indent += 1;
 			this.afterOn = Boolean.TRUE;
-			newline();
+			// newline();
 			out();
 			this.beginLine = false;
 		}
@@ -251,7 +251,9 @@ public class BasicFormatterImpl implements Formatter {
 			if (!UNION.equals(this.lcToken)) {
 				this.indent += 1;
 			}
-			newline();
+			if (!"join".equalsIgnoreCase(this.lcToken)) {
+				newline();
+			}
 			this.afterBeginBeforeEnd = false;
 			this.afterByOrSetOrFromOrSelect = (("by".equals(this.lcToken))
 					|| ("set".equals(this.lcToken)) || ("from"
