@@ -30,4 +30,11 @@ public class FormatterTest {
 		final String fo = f.format(sql);
 		System.out.println(fo);
 	}
+
+	@Test
+	public void format04() {
+		final String sql = "select t.id, t.name from (select * from demo.demo where 1=1 and id=1) t left join (select * from demo.t_a) a on t.id=a.id where 1=1 and id=1";
+		final String fo = f.format(sql);
+		System.out.println(fo);
+	}
 }
