@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
+
 import com.coffee.common.common.exp.SvcException;
 import com.coffee.common.xml.utils.jaxb.RootNode;
 import com.coffee.common.xml.utils.jaxb.SubNode;
@@ -25,27 +27,45 @@ public class JaxUtilsTest {
 		}
 	}
 
+	private static RootNode getWriteData() {
+		final RootNode root = new RootNode();
+		final SubNode sub1 = new SubNode();
+		sub1.setId(1);
+		sub1.setName("name1");
+		final List<SubNode> subs = new ArrayList<SubNode>();
+		subs.add(sub1);
+		root.setSubs(subs);
+		return root;
+	}
+
 	private static void write() {
+		FileOutputStream out = null;
 		try {
 			final String xmlPath = "E:\\Test\\xml\\demo1.xml";
-			final FileOutputStream out = new FileOutputStream(new File(xmlPath));
-			final RootNode root = new RootNode();
-			final SubNode sub1 = new SubNode();
-			sub1.setId(1);
-			sub1.setName("name1");
-			final List<SubNode> subs = new ArrayList<SubNode>();
-			subs.add(sub1);
-			root.setSubs(subs);
-			JaxUtils.write(out, RootNode.class, root);
+			out = new FileOutputStream(new File(xmlPath));
+			JaxUtils.write(out, RootNode.class, getWriteData());
 		} catch (final FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (final SvcException e) {
 			e.printStackTrace();
+		} finally {
+			IOUtils.closeQuietly(out);
+		}
+	}
+
+	private static void writeFormat() {
+		try {
+			final String xmlPath = "E:\\Test\\xml\\demo2.xml";
+			JaxUtils.write(xmlPath, RootNode.class, getWriteData());
+		} catch (final SvcException e) {
+			e.printStackTrace();
+		} finally {
 		}
 	}
 
 	public static void main(final String[] args) {
 		read();
 		write();
+		writeFormat();
 	}
 }
