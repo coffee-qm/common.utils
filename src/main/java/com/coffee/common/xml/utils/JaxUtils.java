@@ -65,8 +65,21 @@ public final class JaxUtils {
 			final XMLStreamWriter writer = factory.createXMLStreamWriter(out);
 			//
 			final Marshaller marshaller = context.createMarshaller();
-			marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			// marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+			// marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			// marshaller
+			// .setProperty(
+			// "com.sun.xml.internal.bind.characterEscapeHandler",
+			// new com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler()
+			// {
+			// @Override
+			// public void escape(final char[] chars,
+			// final int i, final int i1,
+			// final boolean bln, final Writer writer)
+			// throws IOException {
+			// writer.write(chars, i, i1);
+			// }
+			// });
 			marshaller.marshal(t, writer);
 		} catch (final JAXBException e) {
 			logger.error("", e);
@@ -88,7 +101,7 @@ public final class JaxUtils {
 			final Marshaller marshaller = context.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			marshaller.marshal(t, new StringWriter());
+			marshaller.marshal(t, writer);
 			//
 			FileUtils.writeStringToFile(new File(path), writer.toString(),
 					Charset.forName("UTF-8"));

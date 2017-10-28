@@ -32,8 +32,12 @@ public class JaxUtilsTest {
 		final SubNode sub1 = new SubNode();
 		sub1.setId(1);
 		sub1.setName("name1");
+		final SubNode sub2 = new SubNode();
+		sub2.setId(2);
+		sub2.setName("name2");
 		final List<SubNode> subs = new ArrayList<SubNode>();
 		subs.add(sub1);
+		subs.add(sub2);
 		root.setSubs(subs);
 		return root;
 	}
