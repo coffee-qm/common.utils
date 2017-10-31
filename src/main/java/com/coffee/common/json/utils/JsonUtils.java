@@ -124,7 +124,7 @@ public final class JsonUtils {
 					.readValue(json, new TypeReference<Map<String, T>>() {
 					});
 			//
-			final Map<String, T> result = new HashMap<String, T>();
+			final Map<String, T> result = new HashMap<String, T>(16);
 			for (final Entry<String, Map<String, Object>> entry : map
 					.entrySet()) {
 				result.put(entry.getKey(), map2Mo(entry.getValue(), clazz));

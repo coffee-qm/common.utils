@@ -23,6 +23,7 @@ public class BasicFormatterImpl implements Formatter {
 	private static final String INSERT = "insert";
 	private static final String UPDATE = "update";
 	private static final String UNION = "union";
+	private static final String JOIN = "join";
 	private static final Set<String> BEGIN_CLAUSES = new HashSet<String>();
 	private static final Set<String> END_CLAUSES = new HashSet<String>();
 	private static final Set<String> LOGICAL = new HashSet<String>();
@@ -251,7 +252,7 @@ public class BasicFormatterImpl implements Formatter {
 			if (!UNION.equals(this.lcToken)) {
 				this.indent += 1;
 			}
-			if (!"join".equalsIgnoreCase(this.lcToken)) {
+			if (!JOIN.equalsIgnoreCase(this.lcToken)) {
 				newline();
 			}
 			this.afterBeginBeforeEnd = false;

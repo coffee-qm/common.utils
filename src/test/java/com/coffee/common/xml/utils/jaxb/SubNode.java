@@ -5,6 +5,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.coffee.common.xml.jaxb.CDataAdapter;
 
+/**
+ * @author QM
+ */
 public class SubNode {
 	private int id;
 

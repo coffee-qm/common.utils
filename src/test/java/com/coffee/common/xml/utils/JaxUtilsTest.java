@@ -13,6 +13,9 @@ import com.coffee.common.common.exp.SvcException;
 import com.coffee.common.xml.utils.jaxb.RootNode;
 import com.coffee.common.xml.utils.jaxb.SubNode;
 
+/**
+ * @author QM
+ */
 public class JaxUtilsTest {
 	private static void read() {
 		try {
