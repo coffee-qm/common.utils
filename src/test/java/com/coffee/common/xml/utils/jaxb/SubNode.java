@@ -1,7 +1,14 @@
 package com.coffee.common.xml.utils.jaxb;
 
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import com.coffee.common.xml.jaxb.CDataAdapter;
+
 public class SubNode {
 	private int id;
+
+	@XmlJavaTypeAdapter(value = CDataAdapter.class)
 	private String name;
 
 	@Override
@@ -22,6 +29,7 @@ public class SubNode {
 		this.id = id;
 	}
 
+	@XmlTransient
 	public String getName() {
 		return name;
 	}

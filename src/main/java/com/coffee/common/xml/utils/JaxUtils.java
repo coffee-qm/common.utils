@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.StringWriter;
+import java.io.Writer;
 import java.nio.charset.Charset;
 
 import javax.xml.bind.JAXBContext;
@@ -22,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.coffee.common.common.exp.SvcException;
+import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
 
 /**
  * @author QM
@@ -65,21 +67,21 @@ public final class JaxUtils {
 			final XMLStreamWriter writer = factory.createXMLStreamWriter(out);
 			//
 			final Marshaller marshaller = context.createMarshaller();
-			// marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-			// marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			// marshaller
-			// .setProperty(
-			// "com.sun.xml.internal.bind.characterEscapeHandler",
-			// new com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler()
-			// {
-			// @Override
-			// public void escape(final char[] chars,
-			// final int i, final int i1,
-			// final boolean bln, final Writer writer)
-			// throws IOException {
-			// writer.write(chars, i, i1);
-			// }
-			// });
+			marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+			// format: not success
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			// escape: not success
+			marshaller.setProperty(
+					"com.sun.xml.bind.marshaller.CharacterEscapeHandler",
+					new CharacterEscapeHandler() {
+						@Override
+						public void escape(final char[] ch, final int start,
+								final int length, final boolean isAttVal,
+								final Writer writer) throws IOException {
+							writer.write(ch, start, length);
+						}
+					});
+			System.out.println(out.toString());
 			marshaller.marshal(t, writer);
 		} catch (final JAXBException e) {
 			logger.error("", e);
@@ -100,13 +102,26 @@ public final class JaxUtils {
 			//
 			final Marshaller marshaller = context.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+			// format
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			// escape
+			marshaller.setProperty(
+					"com.sun.xml.bind.marshaller.CharacterEscapeHandler",
+					new CharacterEscapeHandler() {
+						@Override
+						public void escape(final char[] ch, final int start,
+								final int length, final boolean isAttVal,
+								final Writer writer) throws IOException {
+							writer.write(ch, start, length);
+						}
+					});
 			marshaller.marshal(t, writer);
 			//
 			FileUtils.writeStringToFile(new File(path), writer.toString(),
 					Charset.forName("UTF-8"));
 		} catch (final JAXBException e) {
 			logger.error("", e);
+			e.printStackTrace();
 			throw new SvcException("Failed to write xml.");
 		} catch (final IOException e) {
 			logger.error("", e);
