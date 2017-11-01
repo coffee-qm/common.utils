@@ -46,13 +46,13 @@ public final class ValidateUtils {
 
 	public static void min(final int val, final int minVal) throws SvcException {
 		if (val < minVal) {
-			throw new SvcException(ExpMsg.NOT_SUPPORT);
+			throw new SvcException(ExpMsg.INVALID_DATA);
 		}
 	}
 
 	public static void max(final int val, final int maxVal) throws SvcException {
 		if (val > maxVal) {
-			throw new SvcException(ExpMsg.NOT_SUPPORT);
+			throw new SvcException(ExpMsg.INVALID_DATA);
 		}
 	}
 
@@ -65,14 +65,14 @@ public final class ValidateUtils {
 	public static void min(final long val, final long minVal)
 			throws SvcException {
 		if (val < minVal) {
-			throw new SvcException(ExpMsg.NOT_SUPPORT);
+			throw new SvcException(ExpMsg.INVALID_DATA);
 		}
 	}
 
 	public static void max(final long val, final long maxVal)
 			throws SvcException {
 		if (val > maxVal) {
-			throw new SvcException(ExpMsg.NOT_SUPPORT);
+			throw new SvcException(ExpMsg.INVALID_DATA);
 		}
 	}
 
