@@ -55,4 +55,30 @@ public final class ValidateUtils {
 			throw new SvcException(ExpMsg.NOT_SUPPORT);
 		}
 	}
+
+	public static void range(final int val, final int minVal, final int maxVal)
+			throws SvcException {
+		min(val, minVal);
+		max(val, maxVal);
+	}
+
+	public static void min(final long val, final long minVal)
+			throws SvcException {
+		if (val < minVal) {
+			throw new SvcException(ExpMsg.NOT_SUPPORT);
+		}
+	}
+
+	public static void max(final long val, final long maxVal)
+			throws SvcException {
+		if (val > maxVal) {
+			throw new SvcException(ExpMsg.NOT_SUPPORT);
+		}
+	}
+
+	public static void range(final long val, final long minVal,
+			final long maxVal) throws SvcException {
+		min(val, minVal);
+		max(val, maxVal);
+	}
 }
